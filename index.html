@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ConCariño | Ramos de Flores, Desayunos y Regalos en Pisco</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fff5f7',
+              100: '#ffe4ea',
+              200: '#fecdd8',
+              300: '#fea3b7',
+              400: '#fb718f',
+              500: '#f43f6c',
+              600: '#e11d57',
+              700: '#be1249',
+              gold: '#d4af37',
+              goldLight: '#fef3c7',
+              sunflower: '#facc15'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Custom Scrollbar for Chat */
+    .custom-scroll::-webkit-scrollbar {
+      width: 5px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #f43f6c;
+      border-radius: 4px;
+    }
+    .hero-bg {
+      background: linear-gradient(135deg, rgba(255, 245, 247, 0.94) 0%, rgba(254, 243, 199, 0.85) 100%), 
+                  url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+<body class="bg-stone-50 text-stone-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+  <!-- Top Announcement Bar -->
+  <aside aria-label="Anuncios de delivery" class="bg-gradient-to-r from-brand-600 via-rose-500 to-amber-500 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium shadow-sm">
+    <div class="container mx-auto flex items-center justify-center gap-2">
+      <span class="inline-block animate-bounce">🌻</span>
+      <span>¡Delivery a todo Pisco! Túpac Amaru Inca, San Andrés, Pisco Playa, Paracas y alrededores.</span>
+      <a href="https://wa.me/51961550156?text=Hola%20ConCariño,%20deseo%20consultar%20por%20un%20delivery%20en%20Pisco" target="_blank" class="underline font-bold ml-1 hover:text-amber-200 transition">Pide al +51 961 550 156</a>
+    </div>
+  </aside>
+
+  <!-- Main Navigation -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-rose-100 shadow-sm transition">
+    <div class="container mx-auto px-4 lg:px-8 py-3.5 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2.5 group">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-500 to-amber-400 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition transform">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </div>
+        <div>
+          <span class="font-serif text-2xl font-bold tracking-tight text-brand-700">ConCariño</span>
+          <span class="block text-[10px] uppercase font-bold tracking-wider text-amber-700">Flores & Regalos • Pisco</span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <nav class="hidden md:flex items-center space-x-7 text-sm font-semibold text-stone-700">
+        <a href="#catalogo" class="hover:text-brand-600 transition">Catálogo</a>
+        <a href="#flores-amarillas" class="hover:text-amber-600 flex items-center gap-1 transition">
+          <span class="text-amber-500">🌻</span> Flores Amarillas
+        </a>
+        <a href="#ocasiones" class="hover:text-brand-600 transition">Ocasiones Especiales</a>
+        <a href="#desayunos" class="hover:text-brand-600 transition">Desayunos</a>
+        <a href="#cobertura" class="hover:text-brand-600 transition">Zonas Delivery</a>
+        <a href="#contacto" class="hover:text-brand-600 transition">Cotizar</a>
+      </nav>
+
+      <!-- CTA Contact Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="https://wa.me/51961550156?text=Hola%20ConCariño!%20Deseo%20hacer%20un%20pedido%20especial." target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-full shadow hover:shadow-md transition">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          Pedir al 961550156
+        </a>
+        <button id="mobileMenuBtn" class="md:hidden text-stone-700 p-2 rounded-lg hover:bg-rose-50" aria-label="Abrir menú">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav Dropdown -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-rose-100 px-6 py-4 space-y-3 text-sm font-semibold">
+      <a href="#catalogo" class="block text-stone-700 hover:text-brand-600">Catálogo Completo</a>
+      <a href="#flores-amarillas" class="block text-amber-600">🌻 Flores Amarillas de Temporada</a>
+      <a href="#ocasiones" class="block text-stone-700 hover:text-brand-600">Día de la Madre y del Padre</a>
+      <a href="#desayunos" class="block text-stone-700 hover:text-brand-600">Desayunos Sorpresa</a>
+      <a href="#cobertura" class="block text-stone-700 hover:text-brand-600">Zonas de Delivery Pisco</a>
+      <a href="#contacto" class="block text-stone-700 hover:text-brand-600">Cotización & Contacto</a>
+      <div class="pt-2">
+        <a href="https://wa.me/51961550156" class="w-full inline-flex justify-center items-center gap-2 bg-emerald-600 text-white font-bold py-2.5 rounded-xl shadow">
+          Pedir por WhatsApp
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-bg py-16 md:py-24 relative overflow-hidden border-b border-rose-100">
+    <div class="container mx-auto px-4 lg:px-8 relative z-10">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm text-brand-700 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide uppercase shadow-sm mb-4 border border-rose-200">
+          <span>📍 Taller en Túpac Amaru Inca, Pisco</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+          <span>Delivery Express</span>
+        </div>
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-stone-900 leading-tight">
+          Hacemos que tus momentos inolvidables lleguen <span class="text-brand-600 underline decoration-amber-400 decoration-wavy">ConCariño</span>.
+        </h1>
+        <p class="mt-4 text-base sm:text-lg text-stone-700 leading-relaxed max-w-2xl font-normal">
+          Especialistas en <strong>ramos de flores frescas</strong>, tendencia en <strong>flores amarillas</strong>, regalos para el <strong>Día de la Madre, Día del Padre</strong> y exquisitos <strong>desayunos sorpresa</strong> entregados directo a la puerta en todo Pisco.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="mt-8 flex flex-wrap gap-4 items-center">
+          <a href="https://wa.me/51961550156?text=Hola%20ConCari%C3%B1o,%20quisiera%20ver%20las%20opciones%20disponibles%20para%20un%20regalo%20hoy" target="_blank" class="inline-flex items-center gap-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold px-7 py-3.5 rounded-2xl shadow-lg shadow-rose-300 hover:scale-105 transition transform">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            <span>Hacer Pedido Inmediato</span>
+          </a>
+          <a href="#catalogo" class="inline-flex items-center gap-2 bg-white/95 hover:bg-white text-stone-800 font-semibold px-6 py-3.5 rounded-2xl border border-rose-200 shadow hover:shadow-md transition">
+            <span>Explorar Catálogo</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </a>
+        </div>
+
+        <!-- Highlight Features -->
+        <div class="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 border-t border-rose-200/80 text-stone-700 text-xs sm:text-sm">
+          <div class="flex items-center gap-2">
+            <span class="text-brand-500 font-bold text-lg">✓</span>
+            <span>Flores frescas seleccionadas</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-brand-500 font-bold text-lg">✓</span>
+            <span>Tarjeta personalizada incluida</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-brand-500 font-bold text-lg">✓</span>
+            <span>Paga con Yape, Plin o Transferencia</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Alert: Día de las Flores Amarillas -->
+  <section id="flores-amarillas" class="py-12 bg-gradient-to-r from-amber-50 via-yellow-50 to-orange-50 border-b border-amber-200">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="bg-white rounded-3xl p-6 md:p-10 shadow-xl border border-amber-200 flex flex-col lg:flex-row items-center gap-8 justify-between">
+        <div class="space-y-4 max-w-xl">
+          <span class="bg-amber-100 text-amber-900 text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full inline-block">🌻 Tendencia & Amor Eterno</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900">Especial Día de las Flores Amarillas</h2>
+          <p class="text-stone-600 leading-relaxed">
+            Sorprende a esa persona especial con los tradicionales y radiantes girasoles y rosas amarillas de alta calidad. Disponibles en ramos buchones, ramilletes con follaje fino, chocolates Ferrero y dedicatoria personalizada.
+          </p>
+          <div class="flex flex-wrap gap-3 text-xs font-semibold text-amber-950">
+            <span class="bg-amber-50 px-3 py-1.5 rounded-lg border border-amber-200">✨ Girasoles Premium</span>
+            <span class="bg-amber-50 px-3 py-1.5 rounded-lg border border-amber-200">✨ Rosas Amarillas Importadas</span>
+            <span class="bg-amber-50 px-3 py-1.5 rounded-lg border border-amber-200">✨ Envoltura Coreana Elegante</span>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
+          <div class="text-center sm:text-right">
+            <p class="text-xs text-stone-500 uppercase tracking-wider font-semibold">Desde</p>
+            <p class="text-3xl font-extrabold text-amber-600">S/ 45.00</p>
+            <p class="text-xs text-emerald-600 font-medium">Reparto a todo Pisco</p>
+          </div>
+          <button onclick="orderViaWhatsapp('Ramo Especial Flores Amarillas', '45.00')" class="w-full sm:w-auto px-6 py-4 bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold rounded-2xl shadow-lg shadow-amber-200 hover:scale-105 transition transform flex items-center justify-center gap-2">
+            <span>🌻 Separar Flores Amarillas</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Catalog Section -->
+  <section id="catalogo" class="py-16 bg-stone-50">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-brand-600 font-bold text-xs uppercase tracking-widest">Nuestra Colección Hecha a Mano</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-2">Detalles que enamoran y sorprenden</h2>
+        <p class="text-stone-600 mt-2">Elige tu categoría favorita y ordena directamente a nuestro WhatsApp oficial con un solo toque.</p>
+      </div>
+
+      <!-- Categories Filter Tabs -->
+      <div class="flex items-center justify-center flex-wrap gap-2 mb-10" id="filterContainer">
+        <button class="filter-btn active-filter px-4 py-2 text-xs sm:text-sm font-semibold rounded-full bg-brand-600 text-white shadow-sm transition" data-filter="all">Todos los Regalos</button>
+        <button class="filter-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-full bg-white text-stone-700 hover:bg-rose-50 border border-rose-100 shadow-sm transition" data-filter="flores-amarillas">🌻 Flores Amarillas</button>
+        <button class="filter-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-full bg-white text-stone-700 hover:bg-rose-50 border border-rose-100 shadow-sm transition" data-filter="ramos">🌹 Ramos & Rosas</button>
+        <button class="filter-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-full bg-white text-stone-700 hover:bg-rose-50 border border-rose-100 shadow-sm transition" data-filter="desayunos">🥞 Desayunos Sorpresa</button>
+        <button class="filter-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-full bg-white text-stone-700 hover:bg-rose-50 border border-rose-100 shadow-sm transition" data-filter="ocasiones">🎉 Mamá, Papá & Fechas</button>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="productsGrid">
+        
+        <!-- Product 1 -->
+        <div class="product-card bg-white rounded-3xl overflow-hidden border border-rose-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="flores-amarillas">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=700&q=80" alt="Ramo Sol Radiante" class="w-full h-56 object-cover" onerror="this.src='https://placehold.co/600x400/fef3c7/b45309?text=Flores+Amarillas+Pisco'">
+            <span class="absolute top-3 left-3 bg-amber-400 text-stone-900 text-xs font-black uppercase px-2.5 py-1 rounded-full shadow">Tendencia</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <span class="text-[11px] text-stone-400 font-bold uppercase tracking-wider">Flores Amarillas</span>
+              <h3 class="font-serif text-lg font-bold text-stone-900 mt-1">Bouquet "Sol de Pisco"</h3>
+              <p class="text-stone-600 text-xs mt-2 line-clamp-2">6 Girasoles gigantes frescos con hojas de eucalipto, papel coreano fino y cinta de seda personalizada.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-rose-50 flex items-center justify-between">
+              <div>
+                <span class="text-xs text-stone-400">Precio</span>
+                <p class="text-xl font-bold text-brand-600">S/ 55.00</p>
+              </div>
+              <button onclick="orderViaWhatsapp('Bouquet Sol de Pisco (Flores Amarillas)', '55.00')" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow transition">
+                <span>Pedir WhatsApp</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card bg-white rounded-3xl overflow-hidden border border-rose-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="ramos">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=700&q=80" alt="Ramo Clásico Rojo Pasión" class="w-full h-56 object-cover" onerror="this.src='https://placehold.co/600x400/ffe4ea/e11d57?text=Ramo+de+Rosas'">
+            <span class="absolute top-3 left-3 bg-brand-500 text-white text-xs font-bold uppercase px-2.5 py-1 rounded-full shadow">Favorito</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <span class="text-[11px] text-stone-400 font-bold uppercase tracking-wider">Rosas de Amor</span>
+              <h3 class="font-serif text-lg font-bold text-stone-900 mt-1">Ramo 12 Rosas Pasión</h3>
+              <p class="text-stone-600 text-xs mt-2 line-clamp-2">Docena de rosas rojas de exportación con gipsófila y tarjeta con dedicatoria en sobre lacrado.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-rose-50 flex items-center justify-between">
+              <div>
+                <span class="text-xs text-stone-400">Precio</span>
+                <p class="text-xl font-bold text-brand-600">S/ 70.00</p>
+              </div>
+              <button onclick="orderViaWhatsapp('Ramo 12 Rosas Pasión', '70.00')" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow transition">
+                <span>Pedir WhatsApp</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card bg-white rounded-3xl overflow-hidden border border-rose-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="desayunos">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=700&q=80" alt="Desayuno Cumpleañero Deluxe" class="w-full h-56 object-cover" onerror="this.src='https://placehold.co/600x400/fef3c7/854d0e?text=Desayuno+Cumplea%C3%B1os'">
+            <span class="absolute top-3 left-3 bg-sky-600 text-white text-xs font-bold uppercase px-2.5 py-1 rounded-full shadow">Cumpleaños</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <span class="text-[11px] text-stone-400 font-bold uppercase tracking-wider">Desayunos Especiales</span>
+              <h3 class="font-serif text-lg font-bold text-stone-900 mt-1">Desayuno "Feliz Día Dulzura"</h3>
+              <p class="text-stone-600 text-xs mt-2 line-clamp-2">Bandeja de pino, sándwich de jamón del país, jugo natural, cupcake con velita, café artesanal y globo metálico.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-rose-50 flex items-center justify-between">
+              <div>
+                <span class="text-xs text-stone-400">Precio</span>
+                <p class="text-xl font-bold text-brand-600">S/ 85.00</p>
+              </div>
+              <button onclick="orderViaWhatsapp('Desayuno Feliz Día Dulzura', '85.00')" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow transition">
+                <span>Pedir WhatsApp</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card bg-white rounded-3xl overflow-hidden border border-rose-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="ocasiones">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=700&q=80" alt="Detalle Mamá Reina" class="w-full h-56 object-cover" onerror="this.src='https://placehold.co/600x400/ffe4ea/be1249?text=Dia+de+la+Madre'">
+            <span class="absolute top-3 left-3 bg-rose-600 text-white text-xs font-bold uppercase px-2.5 py-1 rounded-full shadow">Día de la Madre</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <span class="text-[11px] text-stone-400 font-bold uppercase tracking-wider">Ocasiones Especiales</span>
+              <h3 class="font-serif text-lg font-bold text-stone-900 mt-1">Caja Floral Mamá con Amor</h3>
+              <p class="text-stone-600 text-xs mt-2 line-clamp-2">Caja cilíndrica de lujo con mix de hortensias, lirios, rosas rosadas y bombones Ferrero Rocher.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-rose-50 flex items-center justify-between">
+              <div>
+                <span class="text-xs text-stone-400">Precio</span>
+                <p class="text-xl font-bold text-brand-600">S/ 95.00</p>
+              </div>
+              <button onclick="orderViaWhatsapp('Caja Floral Mamá con Amor', '95.00')" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow transition">
+                <span>Pedir WhatsApp</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card bg-white rounded-3xl overflow-hidden border border-rose-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="ocasiones">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=700&q=80" alt="Box Regalo Día del Padre" class="w-full h-56 object-cover" onerror="this.src='https://placehold.co/600x400/e2e8f0/1e293b?text=Dia+del+Padre'">
+            <span class="absolute top-3 left-3 bg-slate-800 text-white text-xs font-bold uppercase px-2.5 py-1 rounded-full shadow">Día del Padre</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <span class="text-[11px] text-stone-400 font-bold uppercase tracking-wider">Ocasiones Especiales</span>
+              <h3 class="font-serif text-lg font-bold text-stone-900 mt-1">Box Premium Papá Campeón</h3>
+              <p class="text-stone-600 text-xs mt-2 line-clamp-2">Cerveza artesanal o Pisco Quebranta pisqueño, copa grabada, frutos secos finos, chocolates y tarjeta dedicatoria.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-rose-50 flex items-center justify-between">
+              <div>
+                <span class="text-xs text-stone-400">Precio</span>
+                <p class="text-xl font-bold text-brand-600">S/ 80.00</p>
+              </div>
+              <button onclick="orderViaWhatsapp('Box Premium Papá Campeón', '80.00')" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow transition">
+                <span>Pedir WhatsApp</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card bg-white rounded-3xl overflow-hidden border border-rose-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="ramos">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?auto=format&fit=crop&w=700&q=80" alt="Ramo Buchón Gigante" class="w-full h-56 object-cover" onerror="this.src='https://placehold.co/600x400/ffe4ea/e11d57?text=Ramo+Buchon'">
+            <span class="absolute top-3 left-3 bg-amber-500 text-white text-xs font-bold uppercase px-2.5 py-1 rounded-full shadow">Impacto</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <span class="text-[11px] text-stone-400 font-bold uppercase tracking-wider">Ramos Exclusivos</span>
+              <h3 class="font-serif text-lg font-bold text-stone-900 mt-1">Ramo Buchón 50 Rosas</h3>
+              <p class="text-stone-600 text-xs mt-2 line-clamp-2">50 rosas rojas frescas dispuestas en cúpula armónica con corona dorada y mariposas luminosas.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-rose-50 flex items-center justify-between">
+              <div>
+                <span class="text-xs text-stone-400">Precio</span>
+                <p class="text-xl font-bold text-brand-600">S/ 180.00</p>
+              </div>
+              <button onclick="orderViaWhatsapp('Ramo Buchón 50 Rosas', '180.00')" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow transition">
+                <span>Pedir WhatsApp</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="product-card bg-white rounded-3xl overflow-hidden border border-rose-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="desayunos">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=700&q=80" alt="Desayuno Criollo Pisqueño" class="w-full h-56 object-cover" onerror="this.src='https://placehold.co/600x400/fef3c7/b45309?text=Desayuno+Criollo'">
+            <span class="absolute top-3 left-3 bg-amber-600 text-white text-xs font-bold uppercase px-2.5 py-1 rounded-full shadow">Sabor Peruano</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <span class="text-[11px] text-stone-400 font-bold uppercase tracking-wider">Desayunos Especiales</span>
+              <h3 class="font-serif text-lg font-bold text-stone-900 mt-1">Desayuno Criollo Pisqueño</h3>
+              <p class="text-stone-600 text-xs mt-2 line-clamp-2">Panes franceses calientitos, chicharrón con camote frito, tamal pisqueño, café pasado y jugo de naranja.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-rose-50 flex items-center justify-between">
+              <div>
+                <span class="text-xs text-stone-400">Precio</span>
+                <p class="text-xl font-bold text-brand-600">S/ 90.00</p>
+              </div>
+              <button onclick="orderViaWhatsapp('Desayuno Criollo Pisqueño', '90.00')" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow transition">
+                <span>Pedir WhatsApp</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="product-card bg-white rounded-3xl overflow-hidden border border-rose-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="flores-amarillas">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1508615039623-a25605d2b022?auto=format&fit=crop&w=700&q=80" alt="Mix Amarillo Alegría" class="w-full h-56 object-cover" onerror="this.src='https://placehold.co/600x400/fef3c7/d97706?text=Cesta+Amarilla'">
+            <span class="absolute top-3 left-3 bg-amber-500 text-stone-900 text-xs font-black uppercase px-2.5 py-1 rounded-full shadow">Flores Amarillas</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <span class="text-[11px] text-stone-400 font-bold uppercase tracking-wider">Flores Amarillas</span>
+              <h3 class="font-serif text-lg font-bold text-stone-900 mt-1">Cesta Floral "Luz de Primavera"</h3>
+              <p class="text-stone-600 text-xs mt-2 line-clamp-2">Canasta tejida a mano con girasoles, margaritas amarillas, lisianthus y un peluche cariñoso a elección.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-rose-50 flex items-center justify-between">
+              <div>
+                <span class="text-xs text-stone-400">Precio</span>
+                <p class="text-xl font-bold text-brand-600">S/ 75.00</p>
+              </div>
+              <button onclick="orderViaWhatsapp('Cesta Floral Luz de Primavera', '75.00')" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow transition">
+                <span>Pedir WhatsApp</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Delivery Coverage & Tupac Amaru Inca Location -->
+  <section id="cobertura" class="py-16 bg-white border-t border-rose-100">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="text-brand-600 font-bold text-xs uppercase tracking-wider">Ubicación & Reparto</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-2">Estamos en Túpac Amaru Inca con delivery a todo Pisco</h2>
+          <p class="text-stone-600 mt-4 leading-relaxed">
+            Nuestro taller creativo y de confección de arreglos florales está estratégicamente ubicado en <strong>Túpac Amaru Inca</strong>, lo cual nos permite una rápida logística de entrega puntual y con el máximo cuidado hacia cualquier punto de la provincia de Pisco.
+          </p>
+
+          <div class="mt-6 space-y-3">
+            <div class="flex items-start gap-3">
+              <div class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold flex-shrink-0 text-sm">📍</div>
+              <div>
+                <strong class="text-stone-800 text-sm">Taller Principal:</strong>
+                <p class="text-stone-600 text-xs">Túpac Amaru Inca, Pisco - Ica, Perú.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold flex-shrink-0 text-sm">🚗</div>
+              <div>
+                <strong class="text-stone-800 text-sm">Zonas de Reparto con Delivery:</strong>
+                <p class="text-stone-600 text-xs">Túpac Amaru Inca, Pisco Centro, San Andrés, Pisco Playa, Villa Tupac Amaru, Paracas (hoteles y residencias), San Clemente y Huancano (previa coordinación).</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold flex-shrink-0 text-sm">⏱️</div>
+              <div>
+                <strong class="text-stone-800 text-sm">Horarios de Entrega:</strong>
+                <p class="text-stone-600 text-xs">Lunes a Domingo de 7:00 AM a 9:00 PM (Entregas matutinas programadas para desayunos sorpresa desde las 7:00 AM).</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 p-4 bg-rose-50 rounded-2xl border border-rose-200 flex items-center justify-between">
+            <div>
+              <p class="text-xs text-brand-700 font-bold">¿Tienes dudas sobre el costo de envío a tu zona?</p>
+              <p class="text-stone-600 text-xs">Te respondemos en menos de 5 minutos por WhatsApp.</p>
+            </div>
+            <a href="https://wa.me/51961550156?text=Hola%20ConCari%C3%B1o,%20deseo%20saber%20el%20costo%20de%20delivery%20para%20mi%20zona" target="_blank" class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-bold transition flex-shrink-0">
+              Consultar Costo
+            </a>
+          </div>
+        </div>
+
+        <!-- Visual Map / Delivery Card -->
+        <div class="relative bg-gradient-to-br from-rose-100 to-amber-100 p-8 rounded-3xl border border-rose-200 text-stone-800 shadow-inner">
+          <div class="bg-white/90 backdrop-blur rounded-2xl p-6 shadow-lg">
+            <h3 class="font-serif text-xl font-bold text-stone-900 mb-3 flex items-center gap-2">
+              <span class="text-brand-600">💐</span> ¿Por qué elegir ConCariño?
+            </h3>
+            <ul class="space-y-3.5 text-xs sm:text-sm text-stone-700">
+              <li class="flex items-center gap-2.5">
+                <span class="text-emerald-500 font-bold">✓</span>
+                <span><strong>Flores 100% Frescas:</strong> No usamos flores marchitas ni guardadas de días previos.</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="text-emerald-500 font-bold">✓</span>
+                <span><strong>Dedicatoria Impresa:</strong> Caligrafía cuidada y tarjeta de cortesía en cada detalle.</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="text-emerald-500 font-bold">✓</span>
+                <span><strong>Reporte Fotográfico:</strong> Te mandamos foto del arreglo antes de salir y confirmación de recepción.</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="text-emerald-500 font-bold">✓</span>
+                <span><strong>Pagos 100% Seguros:</strong> Yape, Plin y BCP / BBVA / Interbank.</span>
+              </li>
+            </ul>
+
+            <div class="mt-6 pt-5 border-t border-rose-100 text-center">
+              <p class="text-xs text-stone-500">¿Quieres un diseño personalizado o flores específicas?</p>
+              <a href="https://wa.me/51961550156?text=Hola,%20quisiera%20cotizar%20un%20arreglo%20personalizado%20para%20Pisco" target="_blank" class="inline-block mt-2 text-xs font-bold text-brand-600 hover:text-brand-800 underline">
+                Escríbenos directamente al 961 550 156 →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Direct Order / Quote Form -->
+  <section id="contacto" class="py-16 bg-stone-100">
+    <div class="container mx-auto px-4 lg:px-8 max-w-4xl">
+      <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-rose-100">
+        <div class="text-center max-w-xl mx-auto mb-8">
+          <span class="text-brand-600 font-bold text-xs uppercase tracking-wider">Cotización y Pedido Rápido</span>
+          <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Personaliza tu Pedido</h2>
+          <p class="text-stone-600 text-xs sm:text-sm mt-2">
+            Completa los datos de tu destinatario y te derivamos con el pedido listo tanto a WhatsApp como a nuestro correo: <strong class="text-stone-800">flores.rodriguez.jon@gmail.com</strong>.
+          </p>
+        </div>
+
+        <form id="orderForm" class="space-y-5" onsubmit="handleFormSubmit(event)">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="clientName" class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">Tu Nombre Completo *</label>
+              <input type="text" id="clientName" required class="w-full px-4 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm" placeholder="Ej: Jon Rodríguez">
+            </div>
+            <div>
+              <label for="clientPhone" class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">Tu Teléfono / WhatsApp *</label>
+              <input type="tel" id="clientPhone" required class="w-full px-4 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm" placeholder="Ej: 961550156">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="productSelect" class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">Tipo de Regalo / Ocasión *</label>
+              <select id="productSelect" required class="w-full px-4 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+                <option value="Flores Amarillas (Tendencia)">🌻 Flores Amarillas (Tendencia)</option>
+                <option value="Ramo de Rosas Clásico / Buchón">🌹 Ramo de Rosas Clásico / Buchón</option>
+                <option value="Desayuno Sorpresa de Cumpleaños">🥞 Desayuno Sorpresa de Cumpleaños</option>
+                <option value="Detalle para el Día de la Madre">💐 Regalo para Día de la Madre</option>
+                <option value="Detalle para el Día del Padre">🎩 Box para Día del Padre</option>
+                <option value="Arreglo con Peluche y Chocolates">🧸 Peluches, Globos & Chocolates</option>
+                <option value="Arreglo Personalizado / Otro">✨ Arreglo a medida</option>
+              </select>
+            </div>
+            <div>
+              <label for="deliveryZone" class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">Zona de Entrega en Pisco *</label>
+              <select id="deliveryZone" required class="w-full px-4 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+                <option value="Túpac Amaru Inca">Túpac Amaru Inca</option>
+                <option value="Pisco Centro / Plaza de Armas">Pisco Centro / Plaza de Armas</option>
+                <option value="San Andrés">San Andrés</option>
+                <option value="Pisco Playa">Pisco Playa</option>
+                <option value="Villa Túpac Amaru">Villa Túpac Amaru</option>
+                <option value="Paracas">Paracas</option>
+                <option value="San Clemente">San Clemente</option>
+                <option value="Otra zona de Pisco">Otra zona (a coordinar)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="deliveryDate" class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">Fecha deseada de Entrega *</label>
+              <input type="date" id="deliveryDate" required class="w-full px-4 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+            </div>
+            <div>
+              <label for="receiverName" class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">Nombre de quien Recibe *</label>
+              <input type="text" id="receiverName" required class="w-full px-4 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm" placeholder="Ej: María José">
+            </div>
+          </div>
+
+          <div>
+            <label for="cardMessage" class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">Dedicatoria para la Tarjeta (Opcional)</label>
+            <textarea id="cardMessage" rows="2" class="w-full px-4 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm" placeholder="Ej: ¡Feliz cumpleaños mamá hermosa, te amamos con todo el corazón!"></textarea>
+          </div>
+
+          <div class="pt-2 flex flex-col sm:flex-row gap-3">
+            <button type="submit" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-2xl shadow-md transition flex items-center justify-center gap-2">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+              <span>Enviar Pedido a WhatsApp (+51 961 550 156)</span>
+            </button>
+            <button type="button" onclick="sendViaEmail()" class="bg-stone-700 hover:bg-stone-800 text-white font-semibold py-3.5 px-6 rounded-2xl shadow transition text-xs sm:text-sm flex items-center justify-center gap-2">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <span>Enviar por Correo</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-stone-900 text-stone-300 pt-14 pb-8 border-t border-stone-800">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div class="space-y-4 md:col-span-1">
+          <div class="flex items-center gap-2">
+            <span class="font-serif text-2xl font-bold text-white">ConCariño</span>
+            <span class="text-amber-400">🌻</span>
+          </div>
+          <p class="text-xs text-stone-400 leading-relaxed">
+            Creamos sonrisas inolvidables con flores, ramos y desayunos elaborados con dedicación desde Túpac Amaru Inca para todo Pisco.
+          </p>
+
+          <!-- Social Channels Section (TikTok, Facebook, Instagram) -->
+          <div class="pt-2">
+            <p class="text-xs uppercase tracking-wider font-semibold text-rose-300 mb-3">Síguenos en Redes Sociales:</p>
+            <div class="flex items-center gap-3">
+              <!-- TikTok -->
+              <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-stone-800 hover:bg-black border border-stone-700 hover:border-pink-500 flex items-center justify-center text-white transition-all transform hover:scale-110 shadow-md group" title="Síguenos en TikTok">
+                <svg class="w-5 h-5 fill-current group-hover:text-pink-400" viewBox="0 0 24 24">
+                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-1.01-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 2.89 3.5 2.71 1.51-.06 2.8-1.12 3.15-2.58.12-.49.16-1.01.16-1.52.02-4.85-.01-9.7.02-14.55.01-.13-.01-.26-.03-.39z"/>
+                </svg>
+              </a>
+
+              <!-- Facebook -->
+              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-stone-800 hover:bg-[#1877F2] border border-stone-700 hover:border-blue-400 flex items-center justify-center text-white transition-all transform hover:scale-110 shadow-md group" title="Síguenos en Facebook">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </a>
+
+              <!-- Instagram -->
+              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-stone-800 hover:bg-gradient-to-tr hover:from-amber-500 hover:via-rose-600 hover:to-purple-600 border border-stone-700 hover:border-pink-400 flex items-center justify-center text-white transition-all transform hover:scale-110 shadow-md group" title="Síguenos en Instagram">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </a>
+
+              <!-- Direct WhatsApp -->
+              <a href="https://wa.me/51961550156" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-stone-800 hover:bg-emerald-600 border border-stone-700 hover:border-emerald-400 flex items-center justify-center text-white transition-all transform hover:scale-110 shadow-md group" title="Chatea por WhatsApp">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-white text-sm font-bold uppercase tracking-wider mb-3">Navegación</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#catalogo" class="hover:text-white transition">Catálogo de Ramos</a></li>
+            <li><a href="#flores-amarillas" class="hover:text-white transition">Especial Flores Amarillas</a></li>
+            <li><a href="#desayunos" class="hover:text-white transition">Desayunos Cumpleañeros</a></li>
+            <li><a href="#ocasiones" class="hover:text-white transition">Día de la Madre y Padre</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white text-sm font-bold uppercase tracking-wider mb-3">Contacto Directo</h4>
+          <ul class="space-y-2 text-xs text-stone-400">
+            <li><strong>WhatsApp:</strong> <a href="https://wa.me/51961550156" class="text-emerald-400 hover:underline">+51 961 550 156</a></li>
+            <li><strong>Correo:</strong> <a href="mailto:flores.rodriguez.jon@gmail.com" class="text-amber-300 hover:underline">flores.rodriguez.jon@gmail.com</a></li>
+            <li><strong>Ubicación:</strong> Túpac Amaru Inca, Pisco - Perú</li>
+            <li><strong>Delivery:</strong> Todo el valle y litoral de Pisco</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white text-sm font-bold uppercase tracking-wider mb-3">Métodos de Pago</h4>
+          <div class="space-y-2 text-xs text-stone-400">
+            <p>✓ Yape & Plin (transferencias inmediatas)</p>
+            <p>✓ BCP, BBVA, Interbank y Banco de la Nación</p>
+            <p>✓ Pagos contraentrega previa confirmación</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-stone-800 pt-6 text-center text-xs text-stone-500">
+        <p>© 2026 ConCariño. Todos los derechos reservados. Flores y detalles en Túpac Amaru Inca, Pisco.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Conversational Chatbot Widget (Cariñito Bot) -->
+  <div id="chatbotWrapper" class="fixed bottom-5 right-5 z-50">
+    <!-- Chat Toggle Button -->
+    <button id="chatbotToggleBtn" class="flex items-center gap-2.5 bg-gradient-to-r from-brand-600 to-amber-500 hover:from-brand-700 hover:to-amber-600 text-white font-bold px-4 py-3 rounded-full shadow-2xl hover:scale-105 transition transform" aria-label="Abrir Asistente Virtual ConCariño">
+      <span class="text-xl">🌸</span>
+      <span class="text-xs sm:text-sm font-bold hidden sm:inline">¿Hacer una consulta? Cariñito Bot</span>
+      <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
+    </button>
+
+    <!-- Chat Modal Window -->
+    <div id="chatbotWindow" class="hidden flex flex-col w-[350px] sm:w-[420px] h-[550px] max-h-[85vh] bg-white rounded-3xl shadow-2xl border border-rose-200 overflow-hidden transition-all duration-300">
+      <!-- Chat Header -->
+      <div class="bg-gradient-to-r from-brand-600 via-rose-500 to-amber-500 text-white p-4 flex items-center justify-between shadow-md">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-lg shadow-inner">
+            🌻
+          </div>
+          <div>
+            <h3 class="font-bold text-sm leading-tight flex items-center gap-1.5">
+              <span>Cariñito Bot</span>
+              <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-medium">Asistente Virtual</span>
+            </h3>
+            <p class="text-[11px] text-rose-100 flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span> ConCariño Pisco • En línea
+            </p>
+          </div>
+        </div>
+        <button id="chatbotCloseBtn" class="text-white/80 hover:text-white p-1 rounded-lg transition" aria-label="Cerrar chat">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Chat Messages Container -->
+      <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-3 custom-scroll bg-stone-50 text-xs sm:text-sm">
+        <!-- Welcome Message -->
+        <div class="flex items-start gap-2">
+          <span class="text-lg flex-shrink-0">🌸</span>
+          <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-sm border border-rose-100 text-stone-800 leading-relaxed space-y-2">
+            <p>¡Hola! Te doy la bienvenida a <strong>ConCariño</strong> en Túpac Amaru Inca, Pisco 🌹.</p>
+            <p class="text-stone-600">Escríbeme libremente lo que estás buscando (ej: <em>"flores amarillas"</em>, <em>"desayunos"</em>, <em>"delivery a Paracas"</em> o <em>"precios"</em>) y te responderé de inmediato.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Conversation Shortcuts -->
+      <div class="px-3 py-2 bg-rose-50/70 border-t border-rose-100 flex gap-1.5 overflow-x-auto custom-scroll text-xs">
+        <button onclick="sendQuickPrompt('¿Tienen flores amarillas?')" class="whitespace-nowrap px-2.5 py-1 bg-white hover:bg-rose-100 text-stone-700 font-medium rounded-full border border-rose-200 transition text-[11px] flex-shrink-0">🌻 Flores Amarillas</button>
+        <button onclick="sendQuickPrompt('¿Qué opciones de desayunos tienen?')" class="whitespace-nowrap px-2.5 py-1 bg-white hover:bg-rose-100 text-stone-700 font-medium rounded-full border border-rose-200 transition text-[11px] flex-shrink-0">🥞 Desayunos</button>
+        <button onclick="sendQuickPrompt('¿Hacen delivery en Pisco?')" class="whitespace-nowrap px-2.5 py-1 bg-white hover:bg-rose-100 text-stone-700 font-medium rounded-full border border-rose-200 transition text-[11px] flex-shrink-0">🚗 Delivery</button>
+        <button onclick="sendQuickPrompt('¿Cuáles son los métodos de pago?')" class="whitespace-nowrap px-2.5 py-1 bg-white hover:bg-rose-100 text-stone-700 font-medium rounded-full border border-rose-200 transition text-[11px] flex-shrink-0">💳 Pagos</button>
+      </div>
+
+      <!-- Free Text Input Form -->
+      <form id="chatInputForm" class="p-3 bg-white border-t border-rose-100 flex items-center gap-2" onsubmit="handleUserChatSubmit(event)">
+        <input type="text" id="userChatInput" placeholder="Escribe tu consulta o pedido..." class="flex-1 px-3.5 py-2.5 bg-stone-100 focus:bg-white rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-xs text-stone-800 transition">
+        <button type="submit" class="bg-brand-600 hover:bg-brand-700 text-white p-2.5 rounded-xl shadow transition" aria-label="Enviar mensaje">
+          <svg class="w-4 h-4 fill-current transform rotate-90" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/></svg>
+        </button>
+      </form>
+
+      <!-- Direct Transfer Footer Button -->
+      <div class="px-3 pb-3 bg-white">
+        <button onclick="transferToWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow transition">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          <span>Hablar con un asesor en WhatsApp (+51 961 550 156)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toastNotification" class="fixed top-5 right-5 z-50 hidden bg-stone-900 text-white px-5 py-3 rounded-2xl shadow-2xl text-xs font-semibold border border-stone-700 transition-all transform duration-300">
+    <span id="toastMessage">Mensaje</span>
+  </div>
+
+  <script>
+    // Constants & Contact Data
+    const WHATSAPP_PHONE = "51961550156";
+    const STORE_EMAIL = "flores.rodriguez.jon@gmail.com";
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Catalog Category Filter
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const productCards = document.querySelectorAll('.product-card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => {
+          b.classList.remove('bg-brand-600', 'text-white');
+          b.classList.add('bg-white', 'text-stone-700');
+        });
+        btn.classList.add('bg-brand-600', 'text-white');
+        btn.classList.remove('bg-white', 'text-stone-700');
+
+        const filter = btn.getAttribute('data-filter');
+
+        productCards.forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-category') === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Order direct to WhatsApp for products
+    function orderViaWhatsapp(productName, price) {
+      const text = `¡Hola ConCariño! 🌸 Deseo ordenar el siguiente detalle para entrega en Pisco:\n\n` +
+                   `🎁 *Producto:* ${productName}\n` +
+                   `💰 *Precio estimado:* S/ ${price}\n` +
+                   `📍 *Ubicación:* Túpac Amaru Inca / Pisco\n\n` +
+                   `¿Me podrían indicar la disponibilidad para hoy o fecha programada? Muchas gracias.`;
+      
+      const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank');
+    }
+
+    // Process form to WhatsApp
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const name = document.getElementById('clientName').value.trim();
+      const phone = document.getElementById('clientPhone').value.trim();
+      const product = document.getElementById('productSelect').value;
+      const zone = document.getElementById('deliveryZone').value;
+      const date = document.getElementById('deliveryDate').value;
+      const receiver = document.getElementById('receiverName').value.trim();
+      const message = document.getElementById('cardMessage').value.trim() || 'Sin mensaje especificado';
+
+      const waMessage = `¡Hola ConCariño! 🌸 He completado la solicitud de pedido desde la web:\n\n` +
+                        `👤 *Cliente:* ${name} (Tel: ${phone})\n` +
+                        `🎁 *Pedido:* ${product}\n` +
+                        `📍 *Zona de Delivery:* ${zone} (Pisco)\n` +
+                        `📅 *Fecha de entrega:* ${date}\n` +
+                        `💝 *Destinatario(a):* ${receiver}\n` +
+                        `💌 *Dedicatoria:* "${message}"\n\n` +
+                        `Quedo a la espera de su confirmación y datos para el pago por Yape/Plin.`;
+
+      const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(waMessage)}`;
+      showToast("Abriendo WhatsApp para confirmar tu pedido...");
+      window.open(url, '_blank');
+    }
+
+    // Process form to Email
+    function sendViaEmail() {
+      const name = document.getElementById('clientName').value.trim() || 'Cliente Web';
+      const phone = document.getElementById('clientPhone').value.trim() || 'No indicado';
+      const product = document.getElementById('productSelect').value;
+      const zone = document.getElementById('deliveryZone').value;
+      const date = document.getElementById('deliveryDate').value || 'Por coordinar';
+      const receiver = document.getElementById('receiverName').value.trim() || 'Por coordinar';
+      const message = document.getElementById('cardMessage').value.trim() || 'Ninguna';
+
+      const subject = `Nuevo Pedido ConCariño: ${product} - ${name}`;
+      const body = `Hola ConCariño,\n\nSolicito cotización y confirmación para el siguiente pedido:\n\n` +
+                   `Nombre del Cliente: ${name}\n` +
+                   `Teléfono: ${phone}\n` +
+                   `Producto: ${product}\n` +
+                   `Zona de Entrega: ${zone}, Pisco\n` +
+                   `Fecha deseada: ${date}\n` +
+                   `Destinatario(a): ${receiver}\n` +
+                   `Dedicatoria: ${message}\n\n` +
+                   `Por favor contactarme para coordinar el pago.\nMuchas gracias.`;
+
+      const mailtoLink = `mailto:${STORE_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoLink;
+      showToast("Abriendo cliente de correo electrónico...");
+    }
+
+    // Toast Notification Utility
+    function showToast(msg) {
+      const toast = document.getElementById('toastNotification');
+      const text = document.getElementById('toastMessage');
+      text.innerText = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 4000);
+    }
+
+    // Conversational Chatbot Logic
+    const chatbotToggleBtn = document.getElementById('chatbotToggleBtn');
+    const chatbotCloseBtn = document.getElementById('chatbotCloseBtn');
+    const chatbotWindow = document.getElementById('chatbotWindow');
+    const chatMessages = document.getElementById('chatMessages');
+    const userChatInput = document.getElementById('userChatInput');
+
+    let chatOpen = false;
+
+    chatbotToggleBtn.addEventListener('click', () => {
+      chatOpen = !chatOpen;
+      if (chatOpen) {
+        chatbotWindow.classList.remove('hidden');
+        chatbotToggleBtn.classList.add('hidden');
+        scrollChatToBottom();
+        userChatInput.focus();
+      }
+    });
+
+    chatbotCloseBtn.addEventListener('click', () => {
+      chatOpen = false;
+      chatbotWindow.classList.add('hidden');
+      chatbotToggleBtn.classList.remove('hidden');
+    });
+
+    // Intelligent Answer Engine based on keywords
+    function getBotResponse(userText) {
+      const lower = userText.toLowerCase();
+
+      if (lower.includes('amarill') || lower.includes('girasol')) {
+        return `¡Nuestras <strong>Flores Amarillas</strong> son tendencia! 🌻 Contamos con ramos de girasoles y rosas amarillas desde S/ 45.00 con tarjeta de cortesía. ¿Deseas que te enviemos fotos de los modelos al WhatsApp?`;
+      } else if (lower.includes('desayuno') || lower.includes('cumpleaños') || lower.includes('cumple')) {
+        return `¡Los <strong>Desayunos Cumpleañeros</strong> vienen en bandeja de madera, sándwich gourmet, jugo natural, café, cupcake con velita y globo temático! 🥞 Te recomendamos reservar con 24h de anticipación.`;
+      } else if (lower.includes('delivery') || lower.includes('envio') || lower.includes('donde') || lower.includes('cobertura') || lower.includes('tupac') || lower.includes('paracas') || lower.includes('san andres')) {
+        return `¡Hacemos delivery a <strong>todo Pisco</strong>! 🚗 Nuestro taller principal está en <strong>Túpac Amaru Inca</strong> y repartimos en Cercado, Pisco Playa, San Andrés, Paracas, San Clemente y más.`;
+      } else if (lower.includes('pago') || lower.includes('yape') || lower.includes('plin') || lower.includes('tarjeta') || lower.includes('cuenta')) {
+        return `Aceptamos <strong>Yape y Plin</strong> al <strong>961550156</strong>, así como transferencias BCP, BBVA e Interbank. Una vez realizada la transferencia, coordinamos la entrega al instante 💳.`;
+      } else if (lower.includes('madre') || lower.includes('padre') || lower.includes('mama') || lower.includes('papa')) {
+        return `¡Tenemos boxes especiales! 💖 Para el Día de la Madre contamos con cajas florales de rosas y lirios. Para el Día del Padre, boxes con Pisco Quebranta pisqueño o cerveza artesanal, copa y frutos secos.`;
+      } else if (lower.includes('precio') || lower.includes('costo') || lower.includes('cuanto')) {
+        return `Nuestros ramos inician desde <strong>S/ 45.00</strong>, ramos de rosas desde <strong>S/ 70.00</strong> y desayunos completos desde <strong>S/ 85.00</strong>. ¿Para qué ocasión estás buscando?`;
+      } else if (lower.includes('hola') || lower.includes('buenas') || lower.includes('buen')) {
+        return `¡Hola! Con mucho gusto te asesoro. Cuéntame qué tipo de regalo deseas preparar o a qué zona de Pisco sería la entrega 🌸.`;
+      } else {
+        return `¡Gracias por tu mensaje! Podemos personalizar tu pedido exactamente como lo imaginas. Si deseas una respuesta inmediata o ver fotos en tiempo real, puedes tocar el botón de WhatsApp aquí abajo y te atenderemos con gusto.`;
+      }
+    }
+
+    function handleUserChatSubmit(e) {
+      if (e) e.preventDefault();
+      const text = userChatInput.value.trim();
+      if (!text) return;
+
+      appendChatMessage(text, 'user');
+      userChatInput.value = '';
+
+      // Typing simulation
+      setTimeout(() => {
+        const response = getBotResponse(text);
+        appendChatMessage(response, 'bot', text);
+      }, 400);
+    }
+
+    function sendQuickPrompt(promptText) {
+      userChatInput.value = promptText;
+      handleUserChatSubmit(null);
+    }
+
+    function appendChatMessage(text, sender, originalUserQuery = '') {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = sender === 'user' ? 'flex justify-end' : 'flex items-start gap-2';
+
+      if (sender === 'user') {
+        msgDiv.innerHTML = `
+          <div class="bg-brand-600 text-white p-3 rounded-2xl rounded-tr-none shadow-sm max-w-[85%] leading-relaxed text-xs">
+            ${text}
+          </div>
+        `;
+      } else {
+        // Bot response with option to continue directly to WhatsApp
+        let actionButton = '';
+        if (originalUserQuery) {
+          const encodedQuery = encodeURIComponent(`Hola ConCariño 🌹, les escribo desde la web por mi consulta: "${originalUserQuery}"`);
+          actionButton = `
+            <div class="mt-2.5 pt-2 border-t border-rose-100 flex justify-end">
+              <a href="https://wa.me/${WHATSAPP_PHONE}?text=${encodedQuery}" target="_blank" class="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1 rounded-lg transition border border-emerald-200">
+                <span>Continuar por WhatsApp</span> →
+              </a>
+            </div>
+          `;
+        }
+
+        msgDiv.innerHTML = `
+          <span class="text-base flex-shrink-0">🌸</span>
+          <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-sm border border-rose-100 text-stone-800 max-w-[88%] leading-relaxed text-xs">
+            <div>${text}</div>
+            ${actionButton}
+          </div>
+        `;
+      }
+
+      chatMessages.appendChild(msgDiv);
+      scrollChatToBottom();
+    }
+
+    function scrollChatToBottom() {
+      setTimeout(() => {
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }, 50);
+    }
+
+    // Direct Transfer to WhatsApp from Chatbot
+    function transferToWhatsApp() {
+      const waText = `Hola ConCariño 🌹 Vengo de conversar con su asistente en la web y me gustaría hablar directamente con un asesor sobre un pedido para Pisco.`;
+      const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(waText)}`;
+      window.open(url, '_blank');
+    }
+
+    // Initialize Page Settings
+    window.addEventListener('DOMContentLoaded', () => {
+      const today = new Date().toISOString().split('T')[0];
+      const dateInput = document.getElementById('deliveryDate');
+      if (dateInput) {
+        dateInput.min = today;
+        dateInput.value = today;
+      }
+    });
+  </script>
+</body>
+</html>
