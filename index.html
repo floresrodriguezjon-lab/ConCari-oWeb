@@ -721,7 +721,7 @@
 
       <!-- Free Text Input Form -->
       <form id="chatInputForm" class="p-3 bg-white border-t border-rose-100 flex items-center gap-2" onsubmit="handleUserChatSubmit(event)">
-        <input type="text" id="userChatInput" placeholder="Escribe tu consulta o pedido..." class="flex-1 px-3.5 py-2.5 bg-stone-100 focus:bg-white rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-xs text-stone-800 transition">
+        <input type="text" id="userChatInput" maxlength="600" autocomplete="off" placeholder="Escribe tu consulta o pedido..." class="flex-1 px-3.5 py-2.5 bg-stone-100 focus:bg-white rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-xs text-stone-800 transition">
         <button type="submit" class="bg-brand-600 hover:bg-brand-700 text-white p-2.5 rounded-xl shadow transition" aria-label="Enviar mensaje">
           <svg class="w-4 h-4 fill-current transform rotate-90" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/></svg>
         </button>
@@ -878,42 +878,110 @@
       chatbotToggleBtn.classList.remove('hidden');
     });
 
-    // Intelligent Answer Engine based on keywords
-    function getBotResponse(userText) {
-      const lower = userText.toLowerCase();
+    // ===== Conexión con el agente de n8n =====
+    // 👉 Pega aquí la "Production URL" de tu nodo Chat Trigger (termina en /chat)
+    const N8N_CHAT_URL = "https://TU-INSTANCIA-N8N/webhook/con-carino-chatbot/chat";
+    const CHAT_TIMEOUT_MS = 45000;
+    const MAX_CHARS = 600;
 
-      if (lower.includes('amarill') || lower.includes('girasol')) {
-        return `¡Nuestras <strong>Flores Amarillas</strong> son tendencia! 🌻 Contamos con ramos de girasoles y rosas amarillas desde S/ 45.00 con tarjeta de cortesía. ¿Deseas que te enviemos fotos de los modelos al WhatsApp?`;
-      } else if (lower.includes('desayuno') || lower.includes('cumpleaños') || lower.includes('cumple')) {
-        return `¡Los <strong>Desayunos Cumpleañeros</strong> vienen en bandeja de madera, sándwich gourmet, jugo natural, café, cupcake con velita y globo temático! 🥞 Te recomendamos reservar con 24h de anticipación.`;
-      } else if (lower.includes('delivery') || lower.includes('envio') || lower.includes('donde') || lower.includes('cobertura') || lower.includes('tupac') || lower.includes('paracas') || lower.includes('san andres')) {
-        return `¡Hacemos delivery a <strong>todo Pisco</strong>! 🚗 Nuestro taller principal está en <strong>Túpac Amaru Inca</strong> y repartimos en Cercado, Pisco Playa, San Andrés, Paracas, San Clemente y más.`;
-      } else if (lower.includes('pago') || lower.includes('yape') || lower.includes('plin') || lower.includes('tarjeta') || lower.includes('cuenta')) {
-        return `Aceptamos <strong>Yape y Plin</strong> al <strong>961550156</strong>, así como transferencias BCP, BBVA e Interbank. Una vez realizada la transferencia, coordinamos la entrega al instante 💳.`;
-      } else if (lower.includes('madre') || lower.includes('padre') || lower.includes('mama') || lower.includes('papa')) {
-        return `¡Tenemos boxes especiales! 💖 Para el Día de la Madre contamos con cajas florales de rosas y lirios. Para el Día del Padre, boxes con Pisco Quebranta pisqueño o cerveza artesanal, copa y frutos secos.`;
-      } else if (lower.includes('precio') || lower.includes('costo') || lower.includes('cuanto')) {
-        return `Nuestros ramos inician desde <strong>S/ 45.00</strong>, ramos de rosas desde <strong>S/ 70.00</strong> y desayunos completos desde <strong>S/ 85.00</strong>. ¿Para qué ocasión estás buscando?`;
-      } else if (lower.includes('hola') || lower.includes('buenas') || lower.includes('buen')) {
-        return `¡Hola! Con mucho gusto te asesoro. Cuéntame qué tipo de regalo deseas preparar o a qué zona de Pisco sería la entrega 🌸.`;
-      } else {
-        return `¡Gracias por tu mensaje! Podemos personalizar tu pedido exactamente como lo imaginas. Si deseas una respuesta inmediata o ver fotos en tiempo real, puedes tocar el botón de WhatsApp aquí abajo y te atenderemos con gusto.`;
+    // ID de sesión: mantiene la memoria de la conversación mientras la pestaña esté abierta
+    function getChatSessionId() {
+      let id = null;
+      try { id = sessionStorage.getItem('concarino_chat_session'); } catch (e) {}
+      if (!id) {
+        id = (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
+             : 'ses-' + Date.now() + '-' + Math.random().toString(36).slice(2);
+        try { sessionStorage.setItem('concarino_chat_session', id); } catch (e) {}
+      }
+      return id;
+    }
+    const chatSessionId = getChatSessionId();
+    let chatBusy = false;
+
+    // Escapa HTML para evitar inyección de código (XSS) en el chat
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    // Formato seguro para respuestas del bot: **negrita**, *cursiva*, listas, saltos de línea y enlaces https
+    function formatBotText(raw) {
+      let t = escapeHtml(raw);
+      t = t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      t = t.replace(/(^|[^*])\*(?!\s)(.+?)\*(?!\*)/g, '$1<em>$2</em>');
+      t = t.replace(/^\s*[-•]\s+/gm, '• ');
+      t = t.replace(/(https:\/\/[^\s<]+)/g, (url) => {
+        const clean = url.replace(/[).,;!?]+$/, '');
+        const rest = url.slice(clean.length);
+        return `<a href="${clean}" target="_blank" rel="noopener noreferrer" class="text-brand-600 underline break-all">${clean}</a>${rest}`;
+      });
+      return t.replace(/\n/g, '<br>');
+    }
+
+    function showTyping() {
+      const div = document.createElement('div');
+      div.id = 'chatTyping';
+      div.className = 'flex items-start gap-2';
+      div.innerHTML = `
+        <span class="text-base flex-shrink-0">🌸</span>
+        <div class="bg-white px-3.5 py-2.5 rounded-2xl rounded-tl-none shadow-sm border border-rose-100 text-stone-500 text-xs italic">
+          Cariñito está escribiendo<span class="animate-pulse">...</span>
+        </div>`;
+      chatMessages.appendChild(div);
+      scrollChatToBottom();
+    }
+    function hideTyping() {
+      const el = document.getElementById('chatTyping');
+      if (el) el.remove();
+    }
+
+    async function askAgent(text) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), CHAT_TIMEOUT_MS);
+      try {
+        const res = await fetch(N8N_CHAT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'sendMessage', sessionId: chatSessionId, chatInput: text }),
+          signal: controller.signal
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        const item = Array.isArray(data) ? data[0] : data;
+        const out = item && (item.output || item.text || item.response);
+        if (!out) throw new Error('Respuesta vacía');
+        return String(out);
+      } finally {
+        clearTimeout(timer);
       }
     }
 
-    function handleUserChatSubmit(e) {
+    async function handleUserChatSubmit(e) {
       if (e) e.preventDefault();
-      const text = userChatInput.value.trim();
+      if (chatBusy) return;
+      const text = userChatInput.value.trim().slice(0, MAX_CHARS);
       if (!text) return;
 
       appendChatMessage(text, 'user');
       userChatInput.value = '';
+      chatBusy = true;
+      userChatInput.disabled = true;
+      showTyping();
 
-      // Typing simulation
-      setTimeout(() => {
-        const response = getBotResponse(text);
-        appendChatMessage(response, 'bot', text);
-      }, 400);
+      try {
+        const reply = await askAgent(text);
+        hideTyping();
+        appendChatMessage(reply, 'bot');
+      } catch (err) {
+        console.error('Error del chatbot:', err);
+        hideTyping();
+        appendChatMessage('Uy, tuve un problema para responderte en este momento 😔. Puedes escribirnos directo por WhatsApp y te atendemos al instante.', 'bot', text);
+      } finally {
+        chatBusy = false;
+        userChatInput.disabled = false;
+        userChatInput.focus();
+      }
     }
 
     function sendQuickPrompt(promptText) {
@@ -926,19 +994,20 @@
       msgDiv.className = sender === 'user' ? 'flex justify-end' : 'flex items-start gap-2';
 
       if (sender === 'user') {
+        // El texto del cliente se inserta escapado (nunca como HTML)
         msgDiv.innerHTML = `
-          <div class="bg-brand-600 text-white p-3 rounded-2xl rounded-tr-none shadow-sm max-w-[85%] leading-relaxed text-xs">
-            ${text}
+          <div class="bg-brand-600 text-white p-3 rounded-2xl rounded-tr-none shadow-sm max-w-[85%] leading-relaxed text-xs break-words">
+            ${escapeHtml(text)}
           </div>
         `;
       } else {
-        // Bot response with option to continue directly to WhatsApp
+        // Botón de WhatsApp solo cuando el bot falla (originalUserQuery presente)
         let actionButton = '';
         if (originalUserQuery) {
           const encodedQuery = encodeURIComponent(`Hola ConCariño 🌹, les escribo desde la web por mi consulta: "${originalUserQuery}"`);
           actionButton = `
             <div class="mt-2.5 pt-2 border-t border-rose-100 flex justify-end">
-              <a href="https://wa.me/${WHATSAPP_PHONE}?text=${encodedQuery}" target="_blank" class="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1 rounded-lg transition border border-emerald-200">
+              <a href="https://wa.me/${WHATSAPP_PHONE}?text=${encodedQuery}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1 rounded-lg transition border border-emerald-200">
                 <span>Continuar por WhatsApp</span> →
               </a>
             </div>
@@ -947,8 +1016,8 @@
 
         msgDiv.innerHTML = `
           <span class="text-base flex-shrink-0">🌸</span>
-          <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-sm border border-rose-100 text-stone-800 max-w-[88%] leading-relaxed text-xs">
-            <div>${text}</div>
+          <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-sm border border-rose-100 text-stone-800 max-w-[88%] leading-relaxed text-xs break-words">
+            <div>${formatBotText(text)}</div>
             ${actionButton}
           </div>
         `;
